@@ -61,7 +61,7 @@ def main(key,address):
         # next page 
         while True:
             elemNext = driver.find_element_by_xpath('//*[@id="pagination_content"]/div/button[2]')
-            driver.execute_script("arguments[0].click()", elemNext)
+            driver.execute_script("arguments[0].click();", elemNext)
             time.sleep(3)
             temp = WebDriverWait(driver, 10).until(lambda x: x.find_elements_by_xpath('//*[@id="listContent"]/div/div/a'))
             for j in temp:
@@ -80,7 +80,7 @@ def main(key,address):
 
                 r.hset('zhilian',e['company']+' '+e['name'],str(e))
                 data.append(e)
-            if elemNext.get_attribute('disabled') is not None:
+            if elemNext.get_attribute('disabled') != '':
                 break
   
     except Exception as err:

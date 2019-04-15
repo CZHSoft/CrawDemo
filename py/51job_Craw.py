@@ -1,15 +1,6 @@
-# import sys
-# sys.path.append('D:\Program Files\python\Lib')
 from selenium import webdriver
-# import time
 import re
 import redis
-
-def search():
-    pool = redis.ConnectionPool(host='127.0.0.1',password='') 
-    r = redis.Redis(connection_pool=pool)
-    data = r.hgetall('51job')
-    return data
 
 def main(key):
 
@@ -18,8 +9,6 @@ def main(key):
     driver2 = webdriver.Chrome("D:/Program Files/python/chromedriver.exe")
     pool = redis.ConnectionPool(host='127.0.0.1',password='') 
     r = redis.Redis(connection_pool=pool)
-    # r.set('foo','bar')
-    # print(r.get('foo').decode('utf8'))
 
     try:
         driver.get("https://search.51job.com")
@@ -83,5 +72,3 @@ def main(key):
     
     return data
 
-# data = main('c#')
-# data = search()
