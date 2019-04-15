@@ -67,11 +67,24 @@ def main(key,address):
             r.hset('liepin',e['company']+' '+e['name'],str(e))
             data.append(e)
         
-        # next
+        # next //*[@id="sojob"]/div[2]/div/div[1]/div[1]/div/div/a[8]
         while True:
-            elemNext = driver.find_element_by_xpath('//*[@id="sojob"]/div[2]/div/div[1]/div[1]/div/div/a[5]')
-            if elemNext.get_attribute('class') != '':
+            elemNext = None
+
+            try:
+                pagebar = driver.find_element_by_xpath('//*[@id="sojob"]/div[2]/div/div[1]/div[1]/div/div')
+                pagebtns = pagebar.find_elements_by_tag_name('a')
+                for i in pagebtns:
+                    if i.text == '下一页':
+                        elemNext = i
+                        break
+            except Exception as err:
+                print(err)
+                continue
+                
+            if elemNext is None or elemNext.get_attribute('class') != '':
                 break
+                
             driver.execute_script("arguments[0].click();", elemNext)
             time.sleep(2)
             temp = driver.find_elements_by_xpath('//*[@id="sojob"]/div[2]/div/div[1]/div[1]/ul/li')
@@ -101,6 +114,5 @@ def main(key,address):
         pool.disconnect()
     
     return data
-
 
 main('c#','广州')
