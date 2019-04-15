@@ -9,7 +9,7 @@ def main(key,address):
     data = []
     driver = webdriver.Chrome("D:/Program Files/python/chromedriver.exe")
     driver2 = webdriver.Chrome("D:/Program Files/python/chromedriver.exe")
-    pool = redis.ConnectionPool(host='127.0.0.1',password='123456') 
+    pool = redis.ConnectionPool(host='127.0.0.1',password='') 
     r = redis.Redis(connection_pool=pool)
 
     try:
@@ -67,7 +67,7 @@ def main(key,address):
             r.hset('liepin',e['company']+' '+e['name'],str(e))
             data.append(e)
         
-        # next //*[@id="sojob"]/div[2]/div/div[1]/div[1]/div/div/a[8]
+        # next
         while True:
             elemNext = None
 
