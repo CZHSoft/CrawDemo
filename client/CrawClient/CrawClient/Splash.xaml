@@ -1,0 +1,26 @@
+﻿<Window x:Name="mainWindow" x:Class="CrawClient.Splash"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CZHsoft" WindowStyle="None" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="120" d:DesignWidth="360" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Opacity="0" AllowsTransparency="True" Topmost="True" Background="{Binding}" Icon="Images/CZHSoft_Logo_png.png">
+	<Window.Resources>
+		<Storyboard x:Key="OnLoaded1"/>
+		<Storyboard x:Key="OnLoadSplash">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="mainWindow" Completed="LoadComplete">
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard x:Name="OnLoadSplash_BeginStoryboard" Storyboard="{StaticResource OnLoadSplash}" />
+		</EventTrigger>
+	</Window.Triggers>
+    <Grid Height="89" Width="355">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="211*" />
+            <ColumnDefinition Width="178*" />
+        </Grid.ColumnDefinitions>
+        <Image Height="89" HorizontalAlignment="Left" Name="logoImage" Stretch="Uniform" VerticalAlignment="Top" Width="351" DataContext="{Binding}" Source="Images/CZHSoft_Logo_png.png" Grid.ColumnSpan="2" Margin="-6,-7,0,0" />
+    </Grid>
+</Window>
